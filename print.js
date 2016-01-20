@@ -46,7 +46,9 @@ casper.on("printEach", function() {
 });
 
 casper.start('http://localhost:8080/auto-print/admin.html#/route1', function() {
-    var urlsFromWeb = this.getHTML('#print-urls').split(',');
+    // var urlsFromWeb = this.getHTML('#print-urls').split(',');
+    var urlsFromWeb = this.getHTML('#print-urls-single-book').split(',');
+    // var urlsFromWeb = this.getHTML('#print-urls').split(',');
     links = urlsFromWeb;
     this.emit("printEach");
 

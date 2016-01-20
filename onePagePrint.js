@@ -12,7 +12,7 @@
 //     'http://localhost:8080/wxshu/auto-print-tl-printJump.html?bookId=ff808081524329600152432b7beb0012'
 // ];
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
-var links = ['http://localhost:8080/wxshu/auto-print-tl-printBook.html?bookId=8af5535b523788dd015239455e26405c'];
+var links = ['http://localhost:8080/wxshu/auto-print-tl-printBook.html?bookId=ff8080815243592c01524360bebd0c6b'];
 var casper = require("casper").create({
     verbose: true
 });
@@ -40,21 +40,21 @@ casper.start().each(links, function(self, link, i) {
 
         };
 
-        // this.emit("printpage.loaded", (i + 1));
+        this.emit("printpage.loaded", (i + 1));
 
 
         // waitfor start
-        console.log(this.getTitle());
-         casper.waitFor(function check() {
-              return this.evaluate(function() {
-                  return this.getTitle() == "下载完成";
-              });
-          }, function then() { // step to execute when check() is ok
-              this.emit("printpage.loaded", this.getTitle());
+        // console.log(this.getTitle());
+        //  casper.waitFor(function check() {
+        //       return this.evaluate(function() {
+        //           return this.getTitle() == "下载完成";
+        //       });
+        //   }, function then() { // step to execute when check() is ok
+        //       this.emit("printpage.loaded", this.getTitle());
 
-          }, function timeout() { // step to execute if check has failed
-              this.echo("I can't haz my screenshot.").exit();
-          },60000);
+        //   }, function timeout() { // step to execute if check has failed
+        //       this.echo("I can't haz my screenshot.").exit();
+        //   },60000);
 
         // waitfor end
     });
