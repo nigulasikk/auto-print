@@ -12,13 +12,13 @@
 //     'http://localhost:8080/wxshu/auto-print-tl-printJump.html?bookId=ff808081524329600152432b7beb0012'
 // ];
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
-var links = ['http://localhost:8080/wxshu/auto-print-tl-printBook.html?bookId=ff8080815243592c01524360bebd0c6b'];
+var links = ['http://www.whiletime.com/wxshu/auto-print-printBook.html?bookId=8a28ce93525ed52b0152623cb8980296&userId=8a28ce93514b1b97015152766925158d'];
 var casper = require("casper").create({
     verbose: true
 });
 
 casper.on("printpage.loaded", function(index) {
-    this.echo(index + "===网页加载完成，开始生成pdf====" + new Date());
+    this.echo(index + "===网页准备完成，开始生成pdf====" + new Date());
     this.capture(index + new Date() + '.pdf');
     this.echo(index + "===pdf生成完成=====" + new Date());
 });

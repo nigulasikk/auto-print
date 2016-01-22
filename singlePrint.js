@@ -17,7 +17,7 @@ var casper = require("casper").create({
 });
 
 casper.on("printpage.loaded", function(index) {
-    this.echo(index + this.getHTML('h2.feiye-name') + "===网页加载完成，开始生成pdf====" + new Date());
+    this.echo(index + this.getHTML('h2.feiye-name') + "===网页准备完成，开始生成pdf====" + new Date());
     this.capture(index + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
     this.echo(index + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
 });
@@ -46,31 +46,16 @@ casper.on("printEach", function() {
 });
 
 casper.start('http://localhost:8080/auto-print/admin.html#/route1', function() {
-    // var urlsFromWeb = this.getHTML('#print-urls').split(',');
-    var urlsFromWeb = this.getHTML('#print-urls-single-book').split(',');
-    // var urlsFromWeb = this.getHTML('#print-urls').split(',');
+   // 减去逗号
+    var urlsFromWebString = this.getHTML('#print-urls-single-book').replace(/&amp;/g, "&");
+    urlsFromWebString = urlsFromWebString.substring(0, urlsFromWebString.length - 1);
+    var urlsFromWeb = urlsFromWebString.split(',');
     links = urlsFromWeb;
+
+ 
+
     this.emit("printEach");
 
 });
-
-// casper.each(links, function(self, link,i) {
-//     casper.echo( (i+1)+'===开始加载网页======='+new Date());
-
-//     self.thenOpen(link, function() {
-//         casper.page.viewportSize = {
-//             width: 796,
-//             height: 1126
-//         };
-//         casper.page.paperSize = {
-//             format: 'A5',
-//             orientation: 'portrait',
-//             margin: '0'
-
-//         };
-
-//         this.emit("printpage.loaded",(i+1));
-//     });
-// });
 
 casper.run();
