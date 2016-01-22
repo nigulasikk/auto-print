@@ -47,7 +47,7 @@ casper.on("startRoute", function() {
             // 迭代每个分页打印的子页面
             casper.each(splitPageLink, function(bself, blink, bindex) {
                 bself.thenOpen(blink, function() {
-                    this.echo("打开分页打印子页面" + this.getHTML('h2.feiye-name') + "===" + blink);
+                    this.echo("==========打开分页打印子页面" + this.getHTML('h2.feiye-name') + "===" + blink);
                     this.emit("printpage.loaded", (i + 1), (bindex + 1));
 
                 });
@@ -59,7 +59,7 @@ casper.on("startRoute", function() {
 });
 
 
-casper.start('http://localhost:8080/auto-print/admin.html#/route1', function() {
+casper.start('http://hz3.whiletime.com/auto-print/admin.html#/route1', function() {
     // var urlsFromWeb = this.getHTML('#print-urls').split(',');
     // 减去逗号
     var urlsFromWebString = this.getHTML('#print-urls-multi-fenye-books').replace(/&amp;/g, "&");
