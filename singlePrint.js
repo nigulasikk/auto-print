@@ -45,7 +45,7 @@ casper.on("printEach", function() {
 
 });
 
-casper.start('http://hz3.whiletime.com/auto-print/admin.html#/route1', function() {
+casper.start('http://whiletime.com/auto-print/admin.html#/route1', function() {
    // 减去逗号
     var urlsFromWebString = this.getHTML('#print-urls-single-book').replace(/&amp;/g, "&");
     urlsFromWebString = urlsFromWebString.substring(0, urlsFromWebString.length - 1);
