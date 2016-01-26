@@ -13,12 +13,12 @@
 // ];
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
 
-var domainName="www.whiletime.com";
-// var domainName = "localhost:8080";
+// var domainName="www.whiletime.com";
+var domainName = "localhost:8080";
 // 简约风格台历
 var links = [];
 // 木质台历
-// var links = ['http://localhost:8080/wxshu/auto-print-cl-print.html?bookId=8af5535b5252f83f01525782179070d6'];
+var links = ['http://www.whiletime.com/wxshu/auto-print-cl-print.html?bookId=8af5535b527bfa4d01527c808a9f1fe2','http://www.whiletime.com/wxshu/auto-print-cl-print.html?bookId=8af5535b525e979001525e9dbcb71150'];
 var casper = require("casper").create({
     verbose: true
 });
@@ -31,12 +31,10 @@ casper.on("calendar.loaded", function(index) {
     this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
 });
 
-
 casper.on("calendar.each", function(index) {
 
     casper.each(links, function(self, link, i) {
         casper.echo((i + 1) + '===开始加载台历网页=======' + new Date());
-         casper.echo((i+1)+link);
         // 会把任务放在一个队里里
         self.thenOpen(link, function() {
             casper.page.viewportSize = {
@@ -64,20 +62,14 @@ casper.on("calendar.each", function(index) {
 
 
 // 一个用户一本书
-casper.start('http://' + domainName + '/auto-print/admin.html#/route1', function() {
-
-    // 减去逗号
-    var urlsFromWebString = this.getHTML('#print-calendars').replace(/&amp;/g, "&");
-    urlsFromWebString = urlsFromWebString.substring(0, urlsFromWebString.length - 1);
-    var urlsFromWeb = urlsFromWebString.split(',');
-    links = urlsFromWeb;
-
-    this.echo("~~~~~~~~~~~~~~~~~~~~台历用户,共" + links.length + '个用户');
+casper.start('http://www.baidu.com', function() {
 
 
     this.emit("calendar.each");
 
 });
+
+
 
 
 

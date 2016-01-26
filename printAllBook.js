@@ -26,7 +26,7 @@ casper.on("printpage.loaded.multi", function(index, sptIndex) {
     this.echo('<<<<<<<<<<<<叮咚'+index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
 });
 
-
+// 遍历单本打印逻辑
 casper.on("printEach", function() {
 
     casper.each(links, function(self, link, i) {
