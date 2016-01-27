@@ -25,6 +25,20 @@ casper.on("printpage.loaded.multi", function(index, sptIndex) {
     this.capture(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
     this.echo('<<<<<<<<<<<<叮咚'+index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
 });
+//照片书打印
+casper.on("photo.loaded", function(index) {
+    this.echo(index + this.getHTML('.text-cover') + "===网页准备完成，开始生成pdf====" + new Date());
+    this.capture(index + this.getHTML('.text-cover') + new Date() + '.pdf');
+    this.echo("<<<<<<<<<<<<叮咚" + index + this.getHTML('.text-cover') + "===照片书pdf生成完成=====" + new Date());
+});
+
+casper.on("calendar.loaded", function(index) {
+    // var author= document.querySelector("#author").value;// "Google"
+    // this.echo(author);
+    this.echo(index +"="+ this.getElementAttribute("#author", 'value')+"===网页加载完成，开始生成pdf====" + new Date());
+    this.capture(index +this.getElementAttribute("#author", 'value')+"=="+ new Date() + '.pdf');
+    this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
+});
 
 // 遍历单本打印逻辑
 casper.on("printEach", function() {
@@ -83,6 +97,7 @@ casper.on("startRoute", function() {
             casper.each(splitPageLink, function(bself, blink, bindex) {
                 bself.thenOpen(blink, function() {
                     // this.echo("--打开分页打印子页面"+ "第" + blink+'个，' + this.getHTML('h2.feiye-name') );
+                    this.echo("--打开分页打印子页面-" +blink );
                     this.echo("--打开分页打印子页面-" + this.getHTML('h2.feiye-name') );
                     this.emit("printpage.loaded.multi", (i + 1), (bindex + 1));
 
@@ -91,6 +106,60 @@ casper.on("startRoute", function() {
 
         });
     });
+
+});
+// 日历遍历
+casper.on("calendar.each", function(index) {
+
+    casper.each(links, function(self, link, i) {
+        casper.echo((i + 1) + '===开始加载台历网页=======' + new Date());
+         casper.echo((i+1)+link);
+        // 会把任务放在一个队里里
+        self.thenOpen(link, function() {
+            casper.page.viewportSize = {
+                height: 1000,
+                width: 1326
+            };
+            casper.page.paperSize = {
+                format: 'A5',
+                orientation: 'landscape',
+                margin: '0'
+
+            };
+
+            this.emit("calendar.loaded", (i + 1));
+
+
+
+        });
+    });
+});
+
+// 遍历单本照片书打印逻辑
+casper.on("photo.each", function() {
+    casper.each(links, function(self, link, i) {
+        casper.echo((i + 1) + '===开始加载网页=======' + new Date()+link);
+        // 会把任务放在一个队里里
+        self.thenOpen(link, function() {
+            casper.page.viewportSize = {
+                width: 796,
+                height: 1126
+            };
+            casper.page.paperSize = {
+                format: 'A4',
+                orientation: 'portrait',
+                margin: '0'
+            };
+            this.emit("photo.loaded", (i + 1));
+            this.echo("等待60秒进入照片书打印。");
+            this.wait(60000, function() {
+                this.emit("photo.loaded", (i + 1));
+
+            });
+
+        });
+    });
+
 
 });
 
@@ -125,6 +194,7 @@ casper.thenOpen('http://' + domainName + '/auto-print/admin.html#/route1', funct
     this.emit("startRoute");
 
 });
+
 
 
 casper.run();
