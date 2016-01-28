@@ -20,9 +20,9 @@ var casper = require("casper").create({
 });
 
 casper.on("printpage.loaded", function(index, sptIndex) {
-    this.echo(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
-    this.echo(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
+    this.echo(index + '-' + sptIndex +  this.getHTML('.nick-name') + "===网页准备完成，开始生成pdf====" + new Date());
+    this.capture(index + '-' + sptIndex +  this.getHTML('.nick-name')+ new Date() + '.pdf');
+    this.echo(index + '-' + sptIndex + this.getHTML('.nick-name') + "===pdf生成完成=====" + new Date());
 });
 
 

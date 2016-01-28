@@ -15,20 +15,20 @@ var casper = require("casper").create({
 });
 // 单本打印
 casper.on("printpage.loaded", function(index) {
-    this.echo(index + this.getHTML('h2.feiye-name') + "===网页准备完成，开始生成pdf===" + new Date());
-    this.capture(index + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
-    this.echo('<<<<<<<<<<<<叮咚'+index + this.getHTML('h2.feiye-name') + "===pdf生成完成===" + new Date());
+    this.echo(index + this.getHTML('.nick-name') + "===网页准备完成，开始生成pdf===" + new Date());
+    this.capture(index + this.getHTML('.nick-name')  + '.pdf');
+    this.echo('<<<<<<<<<<<<叮咚'+index + this.getHTML('.nick-name') + "===pdf生成完成===" + new Date());
 });
 // 多本打印
 casper.on("printpage.loaded.multi", function(index, sptIndex) {
-    this.echo(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + '-' + sptIndex + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
-    this.echo('<<<<<<<<<<<<叮咚'+index + '-' + sptIndex + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
+    this.echo(index + '-' + sptIndex + this.getHTML('.nick-name') + "===网页准备完成，开始生成pdf====" + new Date());
+    this.capture(index + '-' + sptIndex + this.getHTML('.nick-name')+ '.pdf');
+    this.echo('<<<<<<<<<<<<叮咚'+index + '-' + sptIndex + this.getHTML('.nick-name') + "===pdf生成完成=====" + new Date());
 });
 //照片书打印
 casper.on("photo.loaded", function(index) {
     this.echo(index + this.getHTML('.text-cover') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + this.getHTML('.text-cover') + new Date() + '.pdf');
+    this.capture(index + this.getHTML('.text-cover')  + '.pdf');
     this.echo("<<<<<<<<<<<<叮咚" + index + this.getHTML('.text-cover') + "===照片书pdf生成完成=====" + new Date());
 });
 
@@ -36,7 +36,7 @@ casper.on("calendar.loaded", function(index) {
     // var author= document.querySelector("#author").value;// "Google"
     // this.echo(author);
     this.echo(index +"="+ this.getElementAttribute("#author", 'value')+"===网页加载完成，开始生成pdf====" + new Date());
-    this.capture(index +this.getElementAttribute("#author", 'value')+"=="+ new Date() + '.pdf');
+    this.capture(index +this.getElementAttribute("#author", 'value')+"==" + '.pdf');
     this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
 });
 
@@ -96,9 +96,9 @@ casper.on("startRoute", function() {
             // 迭代每个分页打印的子页面
             casper.each(splitPageLink, function(bself, blink, bindex) {
                 bself.thenOpen(blink, function() {
-                    // this.echo("--打开分页打印子页面"+ "第" + blink+'个，' + this.getHTML('h2.feiye-name') );
+                    // this.echo("--打开分页打印子页面"+ "第" + blink+'个，' + this.getHTML('.nick-name') );
                     this.echo("--打开分页打印子页面-" +blink );
-                    this.echo("--打开分页打印子页面-" + this.getHTML('h2.feiye-name') );
+                    this.echo("--打开分页打印子页面-" + this.getHTML('.nick-name') );
                     this.emit("printpage.loaded.multi", (i + 1), (bindex + 1));
 
                 });

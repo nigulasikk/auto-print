@@ -17,9 +17,9 @@ var casper = require("casper").create({
 });
 
 casper.on("printpage.loaded", function(index) {
-    this.echo(index + this.getHTML('h2.feiye-name') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + this.getHTML('h2.feiye-name') + new Date() + '.pdf');
-    this.echo(index + this.getHTML('h2.feiye-name') + "===pdf生成完成=====" + new Date());
+    this.echo(index +  this.getHTML('.nick-name') + "===网页准备完成，开始生成pdf====" + new Date());
+    this.capture(index +  this.getHTML('.nick-name') + new Date() + '.pdf');
+    this.echo(index + this.getHTML('.nick-name') + "===pdf生成完成=====" + new Date());
 });
 
 casper.on("printEach", function() {
