@@ -14,14 +14,14 @@
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
 // 'http://localhost:8080/wxshu/auto-print-tl-printByPageIndex.html?bookId=8af5535b52599c9901525ccec6eb1bc5', 
 // 'http://localhost:8080/wxshu/auto-print-printByPageIndex.html?bookId=8af5535b52625561015262a5992b3c7a'
-var links = ['http://localhost:8080/wxshu/auto-print-printByPageIndex.html?bookId=8af5535b52625561015262a5992b3c7a','http://localhost:8080/wxshu/auto-print-tl-printByPageIndex.html?bookId=8af5535b52599c9901525ccec6eb1bc5', 'http://localhost:8080/wxshu/auto-print-jn-printByPageIndex.html?bookId=8af5535b52579be00152598d90373988'];
+var links = ['http://www.whiletime.com/wxshu/auto-print-printByPageIndex.html?bookId=8a28ce935268c90e01526982360f5ef4'];
 var casper = require("casper").create({
     verbose: true
 });
 
 casper.on("printpage.loaded", function(index, sptIndex) {
     this.echo(index + '-' + sptIndex +  this.getHTML('.nick-name') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + '-' + sptIndex +  this.getHTML('.nick-name')+ new Date() + '.pdf');
+    this.capture(index + '-' + sptIndex +  this.getHTML('.nick-name')+ '.pdf');
     this.echo(index + '-' + sptIndex + this.getHTML('.nick-name') + "===pdf生成完成=====" + new Date());
 });
 

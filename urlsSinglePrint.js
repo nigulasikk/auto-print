@@ -12,7 +12,7 @@
 //     'http://localhost:8080/wxshu/auto-print-tl-printJump.html?bookId=ff808081524329600152432b7beb0012'
 // ];
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
-var links = ['http://localhost:8080/wxshu/auto-print-printBook.html?bookId=8af5535b51f1e9070151f5cc0b250c98'];
+var links = ['http://www.whiletime.com/wxshu/auto-print-printBook.html?bookId=8a28ce93527fa17801528110586f1e3e'];
 var casper = require("casper").create({
     verbose: true
 });

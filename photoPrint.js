@@ -18,7 +18,7 @@ casper.on("photo.loaded", function(index) {
 
 
     this.echo(index + this.getHTML('.text-cover') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + this.getHTML('.text-cover') + new Date() + '.pdf');
+    this.capture(index + this.getHTML('.text-cover') + '.pdf');
     this.echo("<<<<<<<<<<<<叮咚" + index + this.getHTML('.text-cover') + "===照片书pdf生成完成=====" + new Date());
 });
 
