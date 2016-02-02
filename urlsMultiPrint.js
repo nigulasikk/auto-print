@@ -14,7 +14,7 @@
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
 // 'http://localhost:8080/wxshu/auto-print-tl-printByPageIndex.html?bookId=8af5535b52599c9901525ccec6eb1bc5', 
 // 'http://localhost:8080/wxshu/auto-print-printByPageIndex.html?bookId=8af5535b52625561015262a5992b3c7a'
-var links = ['http://www.whiletime.com/wxshu/auto-print-printByPageIndex.html?bookId=8a28ce935268c90e01526982360f5ef4'];
+var links = ['http://www.whiletime.com/wxshu/auto-print-printByPageIndex.html?bookId=8af5535b5289edef015297c42209385a'];
 var casper = require("casper").create({
     verbose: true
 });

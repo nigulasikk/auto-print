@@ -28,7 +28,8 @@ casper.on("printpage.loaded.multi", function(index, sptIndex) {
 //照片书打印
 casper.on("photo.loaded", function(index) {
     this.echo(index + this.getHTML('.text-cover') + "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index + this.getHTML('.text-cover')  + '.pdf');
+    this.capture(index +  this.getHTML('.nick-name')+ '.pdf');
+   
     this.echo("<<<<<<<<<<<<叮咚" + index + this.getHTML('.text-cover') + "===照片书pdf生成完成=====" + new Date());
 });
 
@@ -36,7 +37,8 @@ casper.on("calendar.loaded", function(index) {
     // var author= document.querySelector("#author").value;// "Google"
     // this.echo(author);
     this.echo(index +"="+ this.getElementAttribute("#author", 'value')+"===网页加载完成，开始生成pdf====" + new Date());
-    this.capture(index +this.getElementAttribute("#author", 'value')+"==" + '.pdf');
+    this.capture(index +  this.getHTML('.nick-name')+ '.pdf');
+   
     this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
 });
 

@@ -27,7 +27,8 @@ casper.on("calendar.loaded", function(index) {
     // var author= document.querySelector("#author").value;// "Google"
     // this.echo(author);
     this.echo(index +"="+ this.getElementAttribute("#author", 'value')+"===网页加载完成，开始生成pdf====" + new Date());
-    this.capture(index +this.getElementAttribute("#author", 'value')+"=="+ '.pdf');
+    this.capture(index +  this.getHTML('.nick-name')+ '.pdf');
+  
     this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
 });
 

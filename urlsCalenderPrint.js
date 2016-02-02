@@ -16,9 +16,8 @@
 // var domainName="www.whiletime.com";
 var domainName = "localhost:8080";
 // 简约风格台历
-var links = [];
 // 木质台历
-var links = ['http://www.whiletime.com/wxshu/auto-print-cl-print.html?bookId=8af5535b527bfa4d01527c808a9f1fe2','http://www.whiletime.com/wxshu/auto-print-cl-print.html?bookId=8af5535b525e979001525e9dbcb71150'];
+var links = ['http://localhost:8080/wxshu/auto-print-cl-print.html?bookId=8a28ce93525ed52b01526251ea114a52'];
 var casper = require("casper").create({
     verbose: true
 });
@@ -27,7 +26,8 @@ casper.on("calendar.loaded", function(index) {
     // var author= document.querySelector("#author").value;// "Google"
     // this.echo(author);
     this.echo(index +"="+ this.getElementAttribute("#author", 'value')+"===网页加载完成，开始生成pdf====" + new Date());
-    this.capture(index +this.getElementAttribute("#author", 'value')+"=="+ new Date() + '.pdf');
+    this.capture(index +  this.getHTML('.nick-name')+ '.pdf');
+
     this.echo("<<<<<<<<<<<<叮咚" + index +this.getElementAttribute("#author", 'value') +"===pdf生成完成=====" + new Date());
 });
 

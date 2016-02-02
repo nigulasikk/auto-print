@@ -12,7 +12,7 @@
 //     'http://localhost:8080/wxshu/auto-print-tl-printJump.html?bookId=ff808081524329600152432b7beb0012'
 // ];
 // 'http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b523788dd01523973a7b6056c'
-var links = ['http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b5268c8ac015273896a26744a'];
+var links = ['http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8af5535b5289edef01529b935c1c7994','http://localhost:8080/wxshu/auto-print-pt-print20X20.html?bookId=8a28ce935289ee750152984374ac0af9'];
 var casper = require("casper").create({
     verbose: true,
     loadImages:true
@@ -22,7 +22,8 @@ casper.on("photo.loaded", function(index) {
     
 
     this.echo(index +this.getHTML('.text-cover')+ "===网页准备完成，开始生成pdf====" + new Date());
-    this.capture(index +this.getHTML('.text-cover')+ new Date() + '.pdf');
+    this.capture(index +  this.getHTML('.nick-name')+ '.pdf');
+    
     this.echo("<<<<<<<<<<<<叮咚" +index +this.getHTML('.text-cover')+ "===照片书pdf生成完成=====" + new Date());
 });
 
@@ -45,7 +46,7 @@ casper.start().each(links, function(self, link, i) {
         console.log(this.getTitle());
         this.emit("photo.loaded", (i + 1));
         this.echo("等待20秒进入照片书打印。");
-        this.wait(20000, function() {
+        this.wait(60000, function() {
         this.emit("photo.loaded", (i + 1));
 
     });
